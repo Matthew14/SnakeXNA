@@ -10,6 +10,7 @@ namespace Snake
     {
         public int speed = 10; //used in Game1.Update()
         private int length = 5; //length of snake in rects
+        public int eaten = 0;
         private int cellSize;
         private LinkedList<Rectangle> body;
         public bool moving, growing;
@@ -58,7 +59,7 @@ namespace Snake
 
             Random r = new Random(DateTime.Now.Millisecond);
             int startPos = r.Next(0, cellArray.GetLength(1) - this.length);
-            direction = r.Next(1, 5); // random starting direction
+            direction = 1;
 
             body = new LinkedList<Rectangle>();
             body.AddFirst(new Rectangle(startPos, startPos, cellSize, cellSize));
@@ -69,7 +70,9 @@ namespace Snake
 
         public void Grow()
         {
+
             speed++;
+            eaten++;
             growing = true;
         }
                 
@@ -118,7 +121,10 @@ namespace Snake
                 foreach (Rectangle r in body)
                 {
                     if (toAdd == r)
+                    {
                         moving = false;
+                        Game1.gameover = true;
+                    }
                 }
                 if (moving)
                     body.AddFirst(toAdd);

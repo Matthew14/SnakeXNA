@@ -11,7 +11,7 @@ namespace Snake
 {
     public class Cell
     {
-        public static int length = 8; //size of cell in pixels
+        public static int length = 10; //size of cell in pixels
         private int PosX, PosY; // Cell position
 
         private Rectangle cellRect;
@@ -35,13 +35,20 @@ namespace Snake
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (SnakeOnMe)
-                spriteBatch.Draw(Game1.cellSprite, cellRect, Color.Black);
-            else
-                spriteBatch.Draw(Game1.cellSprite, cellRect, Color.Gray);
             
-            if (FoodOnMe)
-                spriteBatch.Draw(Game1.cellSprite, cellRect, Color.Blue);
+                if (SnakeOnMe)
+                    spriteBatch.Draw(Game1.cellSprite, cellRect, Color.Black);
+                else
+                {
+                    if (!Game1.gameover)
+                        spriteBatch.Draw(Game1.cellSprite, cellRect, Color.Gray);
+                    else
+                        spriteBatch.Draw(Game1.cellSprite, cellRect, Color.Red);
+                }
+
+                if (FoodOnMe)
+                    spriteBatch.Draw(Game1.cellSprite, cellRect, Color.Blue);
+
         }
 
     }

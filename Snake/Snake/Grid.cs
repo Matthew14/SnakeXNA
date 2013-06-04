@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 namespace Snake
 {
     public class Grid
@@ -47,18 +47,18 @@ namespace Snake
             }
         }
         
-        public void Update()
+        public void Update(SoundEffect se)
         {
             foreach (Cell c in gridArray)
             {
                 if (c.FoodOnMe && c.SnakeOnMe)
                 {
+                    se.Play();
                     c.FoodOnMe = false;
                     Food();
                     snake.Grow();
                 }
             }
-
             snake.Update(gridArray);
         }
         
