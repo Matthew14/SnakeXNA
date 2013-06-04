@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
+
 namespace Snake
 {
     public class Grid
@@ -23,14 +21,14 @@ namespace Snake
             FillGrid();
             snake = new Snake(gridArray, length);
 
-            Food();
+            Food();//first food piece 
         }
         public void Food() 
         {
             Random r = new Random(DateTime.Now.Millisecond);
             int x = r.Next(0, sizeX);
             int y = r.Next(0, sizeY);
-            while (gridArray[x, y].SnakeOnMe)
+            while (gridArray[x, y].SnakeOnMe)//food can't spawn on the snake
             {
                 x = r.Next(0, sizeX);
                 y = r.Next(0, sizeY);
@@ -51,10 +49,11 @@ namespace Snake
         {
             foreach (Cell c in gridArray)
             {
-                if (c.FoodOnMe && c.SnakeOnMe)
+                if (c.FoodOnMe && c.SnakeOnMe)//snake eats the food
                 {
                     se.Play();
                     c.FoodOnMe = false;
+
                     Food();
                     snake.Grow();
                 }

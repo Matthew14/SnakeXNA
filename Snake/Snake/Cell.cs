@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Audio;
 
 namespace Snake
 {
@@ -16,7 +10,6 @@ namespace Snake
 
         private Rectangle cellRect;
 
-        //This is to show if the cell is dead or alive:
         public bool SnakeOnMe { get; set; }
         public bool FoodOnMe { get; set; }
 
@@ -28,28 +21,19 @@ namespace Snake
             cellRect = new Rectangle(PosX, PosY, length, length);
         }
 
-        public void Update()
-        {
-            
-        }
-
         public void Draw(SpriteBatch spriteBatch)
         {
-            
                 if (SnakeOnMe)
                     spriteBatch.Draw(Game1.cellSprite, cellRect, Color.Black);
+                else if (FoodOnMe)
+                    spriteBatch.Draw(Game1.cellSprite, cellRect, Color.Blue);
                 else
                 {
                     if (!Game1.gameover)
                         spriteBatch.Draw(Game1.cellSprite, cellRect, Color.Gray);
                     else
-                        spriteBatch.Draw(Game1.cellSprite, cellRect, Color.Red);
+                        spriteBatch.Draw(Game1.cellSprite, cellRect, Color.DarkRed);
                 }
-
-                if (FoodOnMe)
-                    spriteBatch.Draw(Game1.cellSprite, cellRect, Color.Blue);
-
         }
-
     }
 }

@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Snake
@@ -26,25 +20,11 @@ namespace Snake
         {
             return scoreLabel;
         }
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-        
         private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
         {
-
+            //Make sure the game quits too
             Program.game.Exit();
-        }
-
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void newGameButton_Click(object sender, EventArgs e)
@@ -52,26 +32,20 @@ namespace Snake
             Program.game.NewGame();
         }
 
+        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            newGameButton_Click(sender, e);
+        }
+
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Program.game.NewGame();
-        }
-
-        private void gameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Program.game.paused = !Program.game.paused;
             pauseToolStripMenuItem.Text = pauseToolStripMenuItem.Text == "Pause" ? "Unpause" : "Pause";
-
         }
 
         private void pctSurface_Click(object sender, EventArgs e)

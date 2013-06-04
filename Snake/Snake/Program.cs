@@ -1,5 +1,3 @@
-using System;
-
 namespace Snake
 {
 #if WINDOWS || XBOX
@@ -16,10 +14,8 @@ namespace Snake
             game = new Game1(form.getDrawSurface(), form.getScoreLabel());
             game.Run();
             form.Close();
-
             game.Exit();
         }
     }
 #endif
 }
-

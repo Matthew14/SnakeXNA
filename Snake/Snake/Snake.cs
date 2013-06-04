@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 
 namespace Snake
 {
     public class Snake
     {
-        public int speed = 10; //used in Game1.Update()
+        private int speed = 10; //used in Game1.Update
+        public int Speed { get { return speed; } }
+
+        private int eaten = 0;
+        public int Eaten { get { return eaten; } }
+
+        private bool moving, growing;
         private int length = 5; //length of snake in rects
-        public int eaten = 0;
         private int cellSize;
-        private LinkedList<Rectangle> body;
-        public bool moving, growing;
-
+        private LinkedList<Rectangle> body; // the squares making up the body first = head etc.
+        
         private int direction; // 1 - up, 2 - right 3 - down, 4 left
-
         public int Direction
         {
             get { return direction; }
@@ -70,7 +71,6 @@ namespace Snake
 
         public void Grow()
         {
-
             speed++;
             eaten++;
             growing = true;
@@ -127,7 +127,10 @@ namespace Snake
                     }
                 }
                 if (moving)
+                {
                     body.AddFirst(toAdd);
+                    cellArray[toAdd.X, toAdd.Y].SnakeOnMe = true;
+                }
 
                 if (!growing)
                 {
@@ -136,8 +139,6 @@ namespace Snake
                 }
                 growing = false;
 
-                foreach (Rectangle r in body)
-                    cellArray[r.X, r.Y].SnakeOnMe = true;
             }
         }
         
