@@ -107,13 +107,13 @@ namespace Snake
             if (!paused)
             {
                 if (state.IsKeyDown(Keys.Up) && lastState.IsKeyUp(Keys.Up))
-                    grid.snake.Direction = 1;
+                    grid.snake.Direction = Snake.dir.UP;
                 else if (state.IsKeyDown(Keys.Down) && lastState.IsKeyUp(Keys.Down))
-                    grid.snake.Direction = 3;
+                    grid.snake.Direction = Snake.dir.DOWN;
                 else if (state.IsKeyDown(Keys.Right) && lastState.IsKeyUp(Keys.Right))
-                    grid.snake.Direction = 2;
+                    grid.snake.Direction = Snake.dir.RIGHT;
                 else if (state.IsKeyDown(Keys.Left) && lastState.IsKeyUp(Keys.Left))
-                    grid.snake.Direction = 4;
+                    grid.snake.Direction = Snake.dir.LEFT;
 
                 grid.Update(soundEffect);
                 base.Update(gameTime);

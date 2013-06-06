@@ -16,9 +16,11 @@ namespace Snake
         private int length = 5; //length of snake in rects
         private int cellSize;
         private LinkedList<Rectangle> body; // the squares making up the body first = head etc.
+
+        public enum dir {UP, DOWN, RIGHT, LEFT};
         
-        private int direction; // 1 - up, 2 - right 3 - down, 4 left
-        public int Direction
+        private dir direction;
+        public dir Direction
         {
             get { return direction; }
             set 
@@ -27,28 +29,28 @@ namespace Snake
                 //right and so on
                 switch (value)
                 {
-                    case 1:
-                        if (direction != 3)
+                    case dir.UP:
+                        if (direction != dir.DOWN)
                             direction = value;
                         break;
 
-                    case 2:
-                        if (direction != 4)
+                    case dir.DOWN:
+                        if (direction != dir.UP)
                             direction = value;
                         break;
 
-                    case 3:
-                        if (direction != 1)
+                    case dir.LEFT:
+                        if (direction != dir.RIGHT)
                             direction = value;
                         break;
 
-                    case 4:
-                        if (direction != 2)
+                    case dir.RIGHT:
+                        if (direction != dir.LEFT)
                             direction = value;
                         break;
 
                     default:
-                        throw new NotSupportedException("Direction must be between 1 and 4 (inclusive)");
+                        throw new NotSupportedException("Direction must be left, right, up or down");
                 }
             }
         }
@@ -60,7 +62,7 @@ namespace Snake
 
             Random r = new Random(DateTime.Now.Millisecond);
             int startPos = r.Next(0, cellArray.GetLength(1) - this.length);
-            direction = 1;
+            direction = dir.UP;
 
             body = new LinkedList<Rectangle>();
             body.AddFirst(new Rectangle(startPos, startPos, cellSize, cellSize));
@@ -83,7 +85,7 @@ namespace Snake
                 Rectangle toAdd = new Rectangle();
                 switch (direction)
                 {
-                    case 1: // up
+                    case dir.UP: 
                         if (body.First.Value.Y - 1 >= 0)
                             toAdd = new Rectangle(body.First.Value.X,
                                 body.First.Value.Y - 1, cellSize, cellSize);
@@ -91,7 +93,7 @@ namespace Snake
                             toAdd = new Rectangle(body.First.Value.X,
                                 cellArray.GetLength(1) - 1, cellSize, cellSize);
                         break;
-                    case 2: // right
+                    case dir.RIGHT:
                         if (body.First.Value.X + 1 < cellArray.GetLength(0))
                             toAdd = new Rectangle(body.First.Value.X + 1,
                                 body.First.Value.Y, cellSize, cellSize);
@@ -99,7 +101,7 @@ namespace Snake
                             toAdd = new Rectangle(0,
                                 body.First.Value.Y, cellSize, cellSize);
                         break;
-                    case 3: // down 
+                    case dir.DOWN: 
                         if (body.First.Value.Y + 1 < cellArray.GetLength(1))
                             toAdd = new Rectangle(body.First.Value.X,
                                 body.First.Value.Y + 1, cellSize, cellSize);
@@ -107,7 +109,7 @@ namespace Snake
                             toAdd = new Rectangle(body.First.Value.X,
                                 0, cellSize, cellSize);
                         break;
-                    case 4: // left
+                    case dir.LEFT:
                         if (body.First.Value.X - 1 >= 0)
                             toAdd = new Rectangle(body.First.Value.X - 1,
                                 body.First.Value.Y, cellSize, cellSize);
