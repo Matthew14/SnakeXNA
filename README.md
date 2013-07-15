@@ -7,8 +7,8 @@ Clone of the classic snake game written in C# using the XNA framework
 
 
 ## Screenshots
-![Playing](http://www.matthewoneill.com/images/snake/shot1.png)
-![Game Over](http://www.matthewoneill.com/images/snake/shot2.png)
+![Playing](http://www.matthewoneill.com/images/snake/snake1.png)
+![Game Over](http://www.matthewoneill.com/images/snake/snake2.png)
 
 
 ## Depends on:
