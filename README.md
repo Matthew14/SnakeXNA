@@ -1,6 +1,6 @@
 # SnakeXNA
 ========
-<a href="http://goo.gl/IVuIP">Windows Installer</a>
+<a href="http://goo.gl/YsMvG">Windows Installer</a>
 
 Clone of the classic snake game written in C# using the XNA framework
 
